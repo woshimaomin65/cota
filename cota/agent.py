@@ -28,6 +28,8 @@ from cota.constant import (
 )
 
 logger = logging.getLogger(__name__)
+def js(data):
+    print(json.dumps(data, ensure_ascii=False, indent=4, default=str))
 
 class Agent:
     def __init__(
