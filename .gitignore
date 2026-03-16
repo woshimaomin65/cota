@@ -1,0 +1,22 @@
+venv
+dist
+**/__pycache__
+.idea
+**/logs
+**/log
+.vscode
+**/*.log
+**/*.faiss
+**/*.pkl
+
+.env
+*.env
+config.yml
+secrets/
+*.key
+*.pem
+credentials.json
+
+# Policy生成的文件
+**/policy/*_dpl_*.md
+**/policy/llm_dpl_*.md
