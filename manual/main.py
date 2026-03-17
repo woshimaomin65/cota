@@ -68,6 +68,7 @@ class Controller(Channel):
                 }
             message = self.handle_message(message)
             await self.handler(message, self)
+
     async def handler(self, message, channel):
         await agent.processor.handle_message(message, channel)
 
