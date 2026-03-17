@@ -1,7 +1,7 @@
 import sys
 import os
-from cota.agent import Agent
-from cota.message.message import Message
+from agent_local import Agent
+from message_local import Message
 from cota.channels.channel import Channel
 import uuid
 from typing import Text, List, Dict, Any, Optional, Callable, Iterable, Awaitable, NoReturn
@@ -13,8 +13,6 @@ config_path = os.path.join(script_dir, '..', 'cota', 'bots', 'weather')
 
 agent = Agent.load_from_path(path=config_path)
 
-async def handler(message, channel):
-    await agent.processor.handle_message(message, channel)
 
 class Controller(Channel):
     """命令行控制器，继承 Channel 以实现必要的接口"""
@@ -69,7 +67,9 @@ class Controller(Channel):
                     'metadata': {}
                 }
             message = self.handle_message(message)
-            await handler(message, self)
+            await self.handler(message, self)
+    async def handler(self, message, channel):
+        await agent.processor.handle_message(message, channel)
 
 
 if __name__ == "__main__":
